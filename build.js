@@ -23,7 +23,7 @@ rollup.rollup({
       plugins:        [ 'external-helpers' ],
     }),
   ],
-  external: [ 'aws-sdk' ] 
+  external: [ 'joi' ] 
 }).then(bundle => {
   bundle.write({
     format:       'cjs',
