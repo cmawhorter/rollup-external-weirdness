@@ -1,4 +1,5 @@
-import AWS from 'aws-sdk';
-import dynogels from 'dynogels';
+import types from '_types';
 
-export default dynogels;
+export default function() {
+	console.log(types);
+}

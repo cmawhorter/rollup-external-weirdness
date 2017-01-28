@@ -5,14 +5,13 @@ const babel       = require('rollup-plugin-babel');
 const nodeResolve = require('rollup-plugin-node-resolve');
 const commonjs    = require('rollup-plugin-commonjs');
 
-const external = [ 'aws-sdk' ];
-
 rollup.rollup({
   entry:              path.join(process.cwd(), 'src/main.js'),
   plugins: [
     nodeResolve({
       jsnext:         true,
       main:           true,
+      skip: [ 'joi' ]
     }),
     commonjs({
       include:        'node_modules/**',
@@ -24,7 +23,7 @@ rollup.rollup({
       plugins:        [ 'external-helpers' ],
     }),
   ],
-  external:           (id) => { var isExternal = external.indexOf(id) > -1; console.log('external?', id, isExternal); return isExternal; },
+  external: [ 'aws-sdk' ] 
 }).then(bundle => {
   bundle.write({
     format:       'cjs',
